@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { PlacesService } from '../../services';
+import { MapService, PlacesService } from '../../services';
 
 @Component({
   selector: 'app-map-page',
