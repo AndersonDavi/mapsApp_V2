@@ -14,6 +14,9 @@ export class BtnRandomLocationComponent {
     if (!this.placesService.isUserLocationReady)
       throw Error('No se encontró la ubicación');
     if (!this.mapService.isMapReady) throw Error('No se encontró el mapa');
-    this.mapService.flyTo([(Math.random() - 0.5) * 360, (Math.random() - 0.5) * 100]);
+    this.mapService.flyTo([
+      (Math.random() - 0.5) * 360,
+      (Math.random() - 0.5) * 100,
+    ]);
   }
 }
