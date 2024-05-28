@@ -6,6 +6,8 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { BtnMyLocationComponent } from './components/btn-my-location/btn-my-location.component';
 import { AngularLogoComponent } from './components/angular-logo/angular-logo.component';
 import { BtnRandomLocationComponent } from './components/btn-random-location/btn-random-location.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { BtnRandomLocationComponent } from './components/btn-random-location/btn
     BtnMyLocationComponent,
     AngularLogoComponent,
     BtnRandomLocationComponent,
+    SearchBarComponent,
+    SearchResultsComponent,
   ],
   imports: [CommonModule],
   exports: [MapPageComponent],
