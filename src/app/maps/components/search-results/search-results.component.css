@@ -5,3 +5,9 @@
 p{
   font-size: 12px;
 }
+
+ul{
+  overflow-y: scroll;
+  height: auto;
+  max-height: 90vh;
+}

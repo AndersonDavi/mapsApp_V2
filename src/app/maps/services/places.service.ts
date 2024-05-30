@@ -1,13 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { environment } from '../../../environments/environments';
 import { Feature, PlacesResponse } from '../interfaces/places';
+import { PlacesApiClient } from '../api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlacesService {
-  public http = inject(HttpClient);
+  private placesApi = inject(PlacesApiClient);
   public userLocation?: [number, number];
   public isLoadingPlaces: boolean = false;
   public places: Feature[] = [];
@@ -37,16 +36,24 @@ export class PlacesService {
   }
 
   getPlacesByQUery(query: string = '') {
+    if (!this.userLocation) throw Error('No se encuentra la ubicación');
+
     this.isLoadingPlaces = true;
-    this.http
-      .get<PlacesResponse>(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?limit=8&proximity=-74.79775802365373%2C10.994877668352984&language=es&access_token=${environment.MAP_BOX_KEY}
-    `
-      )
+    this.placesApi
+      .get<PlacesResponse>(`/${query}.json`, {
+        params: {
+          proximity: this.userLocation.join(','),
+        },
+      })
       .subscribe((resp) => {
-        console.log(resp.features);
+        // console.log(resp.features);
         this.places = resp.features;
         this.isLoadingPlaces = false;
+        // this.places.forEach((place) => {
+        //   console.log(
+        //     `${place.text_es}\n${place.center}`
+        //   );
+        // });
       });
   }
 }

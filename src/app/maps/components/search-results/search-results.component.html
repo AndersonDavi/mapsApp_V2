@@ -1,13 +1,19 @@
+@if (isLoadingPLaces) {
 <div class="alert alert-light mt-2 text-cetner">
   <h6>Cargando</h6>
   <p>Espere por favor</p>
 </div>
 
-<ul class="list-group mt-2">
-  <li class="list-group-item list-group-item-action pointer">
-    <h6>Lugar</h6>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, et! Autem nesciunt unde quibusdam at?</p>
-    <button class="btn btn-sm btn-outline-secondary">Direcciones</button>
+} @else { @if (places.length > 0) {
 
+<ul class="list-group mt-2">
+  @for (place of places; track $index) {
+  <li class="list-group-item list-group-item-action pointer mt-2" (click)="flyTo(place)">
+    <h6>{{ place.text_es }}</h6>
+    <p>{{ place.place_name_es }}</p>
+    <button class="btn btn-sm btn-outline-secondary" >Ir al sitio</button>
   </li>
+  }
 </ul>
+
+} }
