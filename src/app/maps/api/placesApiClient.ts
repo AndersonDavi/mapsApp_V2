@@ -41,4 +41,3 @@ export class PlacesApiClient extends HttpClient {
     });
   }
 }
-// `/${query}.json?limit=8&proximity=-74.79775802365373%2C10.994877668352984&language=es&access_token=${environment.MAP_BOX_KEY}
