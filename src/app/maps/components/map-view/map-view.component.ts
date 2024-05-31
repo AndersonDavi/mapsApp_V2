@@ -31,7 +31,8 @@ export class MapViewComponent implements AfterViewInit {
     const popup = new Popup({ closeOnClick: false }).setHTML(
       `
       <h3>Aqui estoy!</h3>
-      <p>Estoy en esta ebucación</p>
+      <p>Estas son mis coordenadas</p>
+      <span>${this.placesService.userLocation}</span>
       `
     );
     new Marker({

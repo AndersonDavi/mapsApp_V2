@@ -9,10 +9,12 @@ import { Marker } from 'mapbox-gl';
 })
 export class PlacesService {
   private placesApi = inject(PlacesApiClient);
+  private mapService = inject(MapService);
 
   public userLocation?: [number, number];
   public isLoadingPlaces: boolean = false;
   public places: Feature[] = [];
+
   get isUserLocationReady(): boolean {
     return !!this.userLocation;
   }
@@ -52,6 +54,7 @@ export class PlacesService {
         // console.log(resp.features);
         this.places = resp.features;
         this.isLoadingPlaces = false;
+        this.mapService.createMarkersFromPlaces(this.places);
         // this.places.forEach((place) => {
         //   console.log(
         //     `${place.text_es}\n${place.center}`
