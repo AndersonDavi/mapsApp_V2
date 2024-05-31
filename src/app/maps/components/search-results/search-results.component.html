@@ -8,10 +8,19 @@
 
 <ul class="list-group mt-2">
   @for (place of places; track $index) {
-  <li class="list-group-item list-group-item-action pointer mt-2" (click)="flyTo(place)">
+  <li
+    class="list-group-item list-group-item-action pointer mt-2"
+    (click)="flyTo(place)"
+    [ngClass]="{ active: place.id == selectedId }"
+  >
     <h6>{{ place.text_es }}</h6>
     <p>{{ place.place_name_es }}</p>
-    <button class="btn btn-sm btn-outline-secondary" >Ir al sitio</button>
+    <button
+      class="btn btn-sm btn-outline-secondary"
+      [ngClass]="{ 'btn-outline-light': place.id == selectedId }"
+    >
+      Ir al sitio
+    </button>
   </li>
   }
 </ul>

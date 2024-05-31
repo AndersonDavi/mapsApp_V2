@@ -9,6 +9,7 @@ import { LngLatLike } from 'mapbox-gl';
   styleUrl: './search-results.component.css',
 })
 export class SearchResultsComponent {
+  public selectedId = '';
   private placesSerivice = inject(PlacesService);
   private mapService = inject(MapService);
 
@@ -20,6 +21,7 @@ export class SearchResultsComponent {
   }
 
   public flyTo(place: Feature) {
+    this.selectedId = place.id;
     const [lng, lat] = place.center;
     this.mapService.flyTo([lng, lat]);
   }

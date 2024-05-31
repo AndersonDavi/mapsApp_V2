@@ -11,7 +11,7 @@ export class SearchBarComponent implements AfterViewInit{
   private debounceTimer?: NodeJS.Timeout;
 
   ngAfterViewInit(): void {
-    this.onSearch('Plaza de la paz')
+    // this.onSearch('Plaza de la paz')
   }
 
 

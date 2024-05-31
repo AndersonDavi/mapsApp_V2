@@ -1,12 +1,15 @@
 import { Injectable, inject } from '@angular/core';
 import { Feature, PlacesResponse } from '../interfaces/places';
 import { PlacesApiClient } from '../api';
+import { MapService } from './map.service';
+import { Marker } from 'mapbox-gl';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlacesService {
   private placesApi = inject(PlacesApiClient);
+
   public userLocation?: [number, number];
   public isLoadingPlaces: boolean = false;
   public places: Feature[] = [];
@@ -37,7 +40,7 @@ export class PlacesService {
 
   getPlacesByQUery(query: string = '') {
     if (!this.userLocation) throw Error('No se encuentra la ubicación');
-
+    if (query.length === 0) return;
     this.isLoadingPlaces = true;
     this.placesApi
       .get<PlacesResponse>(`/${query}.json`, {
