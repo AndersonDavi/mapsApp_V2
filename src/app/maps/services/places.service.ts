@@ -51,15 +51,9 @@ export class PlacesService {
         },
       })
       .subscribe((resp) => {
-        // console.log(resp.features);
         this.places = resp.features;
         this.isLoadingPlaces = false;
         this.mapService.createMarkersFromPlaces(this.places);
-        // this.places.forEach((place) => {
-        //   console.log(
-        //     `${place.text_es}\n${place.center}`
-        //   );
-        // });
       });
   }
 }

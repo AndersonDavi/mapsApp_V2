@@ -46,5 +46,10 @@ export class MapService {
     }
     this.markers = newMarkers;
   }
+
+  createMarker(marker: Marker) {
+    if (!this.isMapReady) throw Error('El mapa no esta inicializado');
+    marker.addTo(this.map!);
+  }
   constructor() {}
 }
