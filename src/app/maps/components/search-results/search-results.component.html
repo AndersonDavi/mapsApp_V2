@@ -10,7 +10,7 @@
   @for (place of places; track $index) {
   <li
     class="list-group-item list-group-item-action pointer mt-2"
-    (click)="flyTo(place)"
+    (click)="flyTo(place); getRouteBetweenPoinys(place)"
     [ngClass]="{ active: place.id == selectedId }"
   >
     <h6>{{ place.text_es }}</h6>

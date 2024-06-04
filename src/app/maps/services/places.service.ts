@@ -42,7 +42,10 @@ export class PlacesService {
 
   getPlacesByQUery(query: string = '') {
     if (!this.userLocation) throw Error('No se encuentra la ubicación');
-    if (query.length === 0) return;
+    if (query.length === 0) {
+      this.clearPlaces();
+      return;
+    }
     this.isLoadingPlaces = true;
     this.placesApi
       .get<PlacesResponse>(`/${query}.json`, {
@@ -53,7 +56,15 @@ export class PlacesService {
       .subscribe((resp) => {
         this.places = resp.features;
         this.isLoadingPlaces = false;
-        this.mapService.createMarkersFromPlaces(this.places,this.userLocation!);
+        this.mapService.createMarkersFromPlaces(
+          this.places,
+          this.userLocation!
+        );
       });
+  }
+
+  clearPlaces() {
+    this.places = [];
+    this.mapService.clearMarkers();
   }
 }

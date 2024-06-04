@@ -14,10 +14,8 @@ export class SearchBarComponent implements AfterViewInit{
     this.onSearch('Maravilla del mundo')
   }
 
-
   onSearch(query: string = '') {
     if (this.debounceTimer) clearTimeout(this.debounceTimer);
-
     this.debounceTimer = setTimeout(() => {
       this.placesService.getPlacesByQUery(query);
     }, 250);
